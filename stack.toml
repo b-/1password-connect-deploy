@@ -1,0 +1,25 @@
+[[stack]]
+name = "1password-connect"
+tags = ["infrastructure", "1password-connect"]
+[stack.config]
+server = "localhost"
+poll_for_updates = true
+auto_update = true
+git_account = "b-"
+repo = "b-/1password-connect-deploy"
+reclone = true
+file_paths = [
+  "compose.yaml"
+]
+
+##
+
+[[resource_sync]]
+name = "1password-connect"
+tags = ["infrastructure", "1password-connect", "sync"]
+[resource_sync.config]
+repo = "b-/1password-connect-deploy"
+git_account = "b-"
+resource_path = ["stack.toml"]
+managed = true
+match_tags = ["1password-connect"]
