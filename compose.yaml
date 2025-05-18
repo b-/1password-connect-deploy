@@ -1,6 +1,6 @@
 secrets:
   1password-credentials-json:
-    environment: 1password-credentials.json
+    environment: OP_CREDENTIALS_JSON
 x-1password-credentials-secret: &1password-credentials-secret
   secrets:
     - source: 1password-credentials.json
