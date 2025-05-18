@@ -1,7 +1,7 @@
 secrets:
-  1password-credentials.json:
-    file: /srv/1password-credentials.json
-x-1password-credentials.json-secret: &1password-credentials-secret
+  1password-credentials-json:
+    environment: 1password-credentials.json
+x-1password-credentials-secret: &1password-credentials-secret
   secrets:
     - source: 1password-credentials.json
       target: /home/opuser/.op/1password-credentials.json
