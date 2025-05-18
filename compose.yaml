@@ -24,7 +24,7 @@ x-ts-sidecar: &ts-sidecar
 
 services:
   op-connect-api:
-    network-mode: service:op-connect-api-ts
+    network_mode: service:op-connect-api-ts
     image: 1password/connect-api:latest
     volumes:
       - "/srv/1password-credentials.json:/home/opuser/.op/1password-credentials.json"
@@ -37,7 +37,7 @@ services:
       TS_HOSTNAME: "op-connect-api"
 
   op-connect-sync:
-    network-mode: service:op-connect-sync-ts
+    network_mode: service:op-connect-sync-ts
     image: 1password/connect-sync:latest
     volumes:
       - "/srv/1password-credentials.json:/home/opuser/.op/1password-credentials.json"
