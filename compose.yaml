@@ -25,7 +25,7 @@ x-ts-sidecar: &ts-sidecar
 
 services:
   op-connect-api:
-    <<: *1password-credentials.json-secret
+    <<: *1password-credentials-secret
     network_mode: service:op-connect-api-ts
     image: 1password/connect-api:latest
     volumes:
@@ -38,7 +38,7 @@ services:
       TS_HOSTNAME: "op-connect-api"
 
   op-connect-sync:
-    <<: *1password-credentials.json-secret
+    <<: *1password-credentials-secret
     network_mode: service:op-connect-sync-ts
     image: 1password/connect-sync:latest
     volumes:
@@ -57,7 +57,7 @@ volumes:
 secrets:
   1password-credentials.json:
     file: /srv/1password-credentials.json
-x-1password-credentials.json-secret: &1password-credentials.json-secret
+x-1password-credentials.json-secret: &1password-credentials-secret
   secrets:
     - source: 1password-credentials.json
       target: /home/opuser/.op/1password-credentials.json
