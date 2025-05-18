@@ -5,6 +5,7 @@ x-ts-sidecar: &ts-sidecar
     environment:
       #TS_USERSPACE: false
       TS_ENABLE_HEALTH_CHECK: true
+      TS_EXTRA_ARGS: --ssh
       TS_LOCAL_ADDR_PORT: 127.0.0.1:41234
       TS_STATE: /ts_state
       #TS_SERVE_CONFIG: /config/serve.json
@@ -24,10 +25,10 @@ x-ts-sidecar: &ts-sidecar
 
 services:
   op-connect-api:
+    <<: *1password-credentials.json-secret
     network_mode: service:op-connect-api-ts
     image: 1password/connect-api:latest
     volumes:
-      - "/srv/1password-credentials.json:/home/opuser/.op/1password-credentials.json"
       - "data:/home/opuser/.op/data"
   op-connect-api-ts:
     <<: *ts-sidecar
@@ -37,10 +38,10 @@ services:
       TS_HOSTNAME: "op-connect-api"
 
   op-connect-sync:
+    <<: *1password-credentials.json-secret
     network_mode: service:op-connect-sync-ts
     image: 1password/connect-sync:latest
     volumes:
-      - "/srv/1password-credentials.json:/home/opuser/.op/1password-credentials.json"
       - "data:/home/opuser/.op/data"
   op-connect-sync-ts:
     <<: *ts-sidecar
@@ -52,3 +53,12 @@ services:
 volumes:
   data:
   ts_state:
+
+secrets:
+  1password-credentials.json:
+    file: /srv/1password-credentials.json
+x-1password-credentials.json-secret: &1password-credentials.json-secret
+  secrets:
+    - source: 1password-credentials.json
+      target: /home/opuser/.op/1password-credentials.json
+      mode: "0o400"
