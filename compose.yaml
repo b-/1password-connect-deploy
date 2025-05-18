@@ -31,8 +31,8 @@ services:
       - "data:/home/opuser/.op/data"
   op-connect-api-ts:
     <<: *ts-sidecar
-    ports:
-      - "8081:8080"
+    #ports:
+      #- "8081:8080"
     environment:
       TS_HOSTNAME: "op-connect-api"
 
@@ -44,8 +44,8 @@ services:
       - "data:/home/opuser/.op/data"
   op-connect-sync-ts:
     <<: *ts-sidecar
-    ports:
-      - "8082:8080"
+    #ports:
+      #- "8082:8080"
     environment:
       TS_HOSTNAME: "op-connect-sync"
 
