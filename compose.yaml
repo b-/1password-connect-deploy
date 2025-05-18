@@ -1,3 +1,12 @@
+secrets:
+  1password-credentials.json:
+    file: /srv/1password-credentials.json
+x-1password-credentials.json-secret: &1password-credentials-secret
+  secrets:
+    - source: 1password-credentials.json
+      target: /home/opuser/.op/1password-credentials.json
+      mode: "0o400"
+
 x-ts-sidecar: &ts-sidecar
     volumes:
       - ts_state:/ts_state
@@ -53,12 +62,3 @@ services:
 volumes:
   data:
   ts_state:
-
-secrets:
-  1password-credentials.json:
-    file: /srv/1password-credentials.json
-x-1password-credentials.json-secret: &1password-credentials-secret
-  secrets:
-    - source: 1password-credentials.json
-      target: /home/opuser/.op/1password-credentials.json
-      mode: "0o400"
