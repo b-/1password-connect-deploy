@@ -9,6 +9,7 @@ x-1password-credentials-secret: &1password-credentials-secret
 
 
 x-ts-sidecar: &ts-sidecar
+    env_file: .env
     volumes:
       - ts_state:/ts_state
     image: tailscale/tailscale:latest
