@@ -1,3 +1,5 @@
+volumes:
+    ts_state:
 x-ts-sidecar: &ts-sidecar
     volumes:
       - ts_state:/ts_state
